@@ -1,0 +1,22 @@
+@layout('layouts/main')
+
+@section('content')
+  <a href="{{ route('videos.create') }}">Novo Video</a>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Descrição</th>
+      </tr>
+    </thead>
+    <tbody>
+      @each(video in videos)
+        <tr>
+          <td><a href="{{ route('videos.show', { id: video.id })}}">{{ video.title }}</a></td>
+          <td>{{ video.description }}</td>
+        </tr>
+      @endeach
+    </tbody>
+  </table>
+@endsection

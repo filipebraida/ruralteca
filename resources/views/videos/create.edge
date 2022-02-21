@@ -1,0 +1,21 @@
+@layout('layouts/main')
+
+@section('content')
+<form action="{{ route('videos.store') }}" method="post">
+  <fieldset>
+    <div>
+      <legend>Título</legend>
+      <input name="title" type="text"/>
+    </div>
+    <div>
+      <legend>Descrição</legend>
+      <input name="description" type="text"/>
+    </div>
+    <div>
+      <legend>Youtube Key</legend>
+      <input name="youtubeKey" type="text"/>
+    </div>
+    <button type="submit">Criar</button>
+  </fieldset>
+</form>
+@endsection
