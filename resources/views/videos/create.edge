@@ -2,6 +2,7 @@
 
 @section('content')
 <form action="{{ route('videos.store') }}" method="post">
+  {{ csrfField() }}
   <fieldset>
     <div>
       <legend>Título</legend>
