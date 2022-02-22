@@ -6,19 +6,27 @@ Sistema de gerenciamento de vídeos que está sendo desenvolvida com a turma de 
 
 1 - Criar a pasta temporária para o banco SQLite
 
-``mkdir tmp``
+```console
+mkdir tmp
+```
 
 2 - Criar o ```.env```
 
-```cp .env.example .env```
+```console
+cp .env.example .env
+```
 
 3 - Instalar as dependências
 
-``npm install``
+```console
+npm install
+```
 
 ## Execução
 
-``npm ace serve --watch``
+```console
+npm ace serve --watch
+```
 
 ### Videos das aulas
 
