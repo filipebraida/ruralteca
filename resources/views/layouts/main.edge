@@ -12,7 +12,16 @@
   @entryPointScripts('app')
 </head>
 <body>
+  <nav>
+    <a href="{{ route('videos.index') }}">Videos</a>
+  </nav>
   <main>
+    <div>
+      <h2>{{ title }}</h2>
+      @if(subtitle)
+        <h3>{{ subtitle }}</h3>
+      @endif
+    </div>
     @!section('content')
   </main>
 </body>
