@@ -22,10 +22,11 @@ Sistema de gerenciamento de vídeos que está sendo desenvolvida com a turma de 
 
 ### Videos das aulas
 
-1 - https://youtu.be/558_Yje5fak
+1. [Desenvolvendo um Sistema Web - Primeiras Rotas](https://youtu.be/FURzp4VD0RE)
+2. [Desenvolvendo um Sistema Web - Primeiro Formulário](https://youtu.be/0TeamhpmofQ)
+3. [Desenvolvendo um Sistema Web - Modelagem dos Dados](https://youtu.be/JOLQBJN7qhQ)
+4. [Desenvolvendo um Sistema Web - Criação de CRUD](https://youtu.be/fWqu9ZKlb4I)
 
-2 - https://youtu.be/FURzp4VD0RE
+### Videos sobre Programação para Web
 
-3 - https://youtu.be/JOLQBJN7qhQ
-
-4 - https://youtu.be/fWqu9ZKlb4I
+Ementa do curso e material sobre programação para Web: http://filipe.braida.com.br/pages/courses/web/
