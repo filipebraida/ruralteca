@@ -11,6 +11,12 @@
 
     @!form.input({ title: 'Senha', name: 'password', type: 'password' })
 
+    @if(flashMessages.has(`errors.login`))
+      <div>
+        {{ flashMessages.get(`errors.login`) }}
+      </div>
+    @endif
+
     @!form.button({ name: 'Login' })
   </fieldset>
 </form>

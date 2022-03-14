@@ -7,16 +7,18 @@ export default class UsersController {
     return view.render('sessions/create')
   }
 
-  public async store({ request, auth, response }: HttpContextContract) {
+  public async store({ request, auth, response, session }: HttpContextContract) {
     const email = request.input('email')
     const password = request.input('password')
 
     try {
       await auth.use('web').attempt(email, password)
-      console.log('ESTOU LOGADO!')
-      response.redirect('/')
+      response.redirect().toRoute('index')
     } catch {
-      return response.badRequest('Invalid credentials')
+      session.flashExcept(['login'])
+      session.flash({ errors: { login: 'Não encontramos nenhuma conta com essas credenciais.' } })
+
+      return response.redirect().toRoute('sessions.create')
     }
   }
 
