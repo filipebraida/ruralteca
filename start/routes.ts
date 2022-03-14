@@ -32,5 +32,13 @@ Route.get('/videos/create', 'VideosController.create').as('videos.create')
 Route.get('/videos/:id', 'VideosController.show')
   .where('id', /^[0-9]$/)
   .as('videos.show')
-Route.get('/videos', 'VideosController.index').as('videos.index')
-Route.post('/videos', 'VideosController.store').as('videos.store')
+Route.get('/videos', 'VideosController.index').middleware('auth:web').as('videos.index')
+Route.post('/videos', 'VideosController.store').middleware('auth:web').as('videos.store')
+
+
+Route.get('/login', 'SessionsController.create').as('sessions.create')
+Route.post('/login', 'SessionsController.store').as('sessions.store')
+Route.get('/logout', 'SessionsController.destroy').as('sessions.destroy')
+
+Route.get('/users/create', 'UsersController.create').as('users.create')
+Route.post('/users/', 'UsersController.store').as('users.store')

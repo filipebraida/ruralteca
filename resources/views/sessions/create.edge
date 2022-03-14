@@ -1,0 +1,17 @@
+@layout('layouts/main')
+
+@set('title', 'Login')
+
+@section('content')
+
+<form action="{{ route('sessions.store') }}" method="POST">
+  {{ csrfField() }}
+  <fieldset>
+    @!form.input({ title: 'Email', name: 'email', type: 'email' })
+
+    @!form.input({ title: 'Senha', name: 'password', type: 'password' })
+
+    @!form.button({ name: 'Login' })
+  </fieldset>
+</form>
+@endsection
