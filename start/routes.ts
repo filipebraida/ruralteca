@@ -26,7 +26,6 @@ Route.get('/', async ({ view }) => {
 
 Route.get('/courses/:id', 'CoursesController.show')
 
-
 // Rotas dos Videos
 Route.get('/videos/create', 'VideosController.create').as('videos.create')
 Route.get('/videos/:id', 'VideosController.show')
