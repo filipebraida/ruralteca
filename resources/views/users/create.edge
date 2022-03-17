@@ -4,16 +4,23 @@
 
 @section('content')
 
-<form action="{{ route('users.store') }}" method="POST">
-  {{ csrfField() }}
-  <fieldset>
-    @!form.input({ title: 'Email', name: 'email', type: 'email' })
+<section class="bg-white py-2">
+  <div class="container py-2 px-6 mx-auto">
 
-    @!form.input({ title: 'Senha', name: 'password', type: 'password' })
+    <form action="{{ route('users.store') }}" method="POST">
+      {{ csrfField() }}
+      <fieldset>
+        @!form.input({ title: 'Email', name: 'email', type: 'email' })
+    
+        @!form.input({ title: 'Senha', name: 'password', type: 'password' })
+    
+        @!form.input({ title: 'Confirme a Senha', name: 'confirm_password', type: 'password' })
+    
+        @!form.button({ name: 'Cadastrar' })
+      </fieldset>
+    </form>
+  </div>
+</section>
 
-    @!form.input({ title: 'Confirme a Senha', name: 'confirm_password', type: 'password' })
 
-    @!form.button({ name: 'Cadastrar' })
-  </fieldset>
-</form>
 @endsection

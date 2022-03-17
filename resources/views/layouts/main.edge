@@ -1,31 +1,102 @@
+{{--
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Ruralteca</title>
-  <meta name="description" content="" />
-  <meta name="keywords" content="" />
-  <meta name="author" content="" />
-  @entryPointStyles('app')
-  @entryPointScripts('app')
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Ruralteca</title>
+
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+
+    @entryPointStyles('app')
+    @entryPointScripts('app')
 </head>
+
 <body>
-  @!component('layouts/partials/header')
-  <main>
-    <section class="text-gray-600 body-font relative">
-      <div class="container px-5 py-24 mx-auto">
-        <div class="flex flex-col text-center w-full mb-12">
-          <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">{{ title }}</h1>
-          <p class="lg:w-2/3 mx-auto leading-relaxed text-base">{{ subtitle }}</p>
-        </div>
-        <div class="lg:w-1/2 md:w-2/3 mx-auto">
-          @!section('content')
-        </div>
-      </div>
-    </section>
-  </main>
-  @!component('layouts/partials/footer')
+    <main class="container-fluid">
+        @!component('layouts/partials/header')
+
+        @!section('content')
+
+        @!component('layouts/partials/footer')
+    </main>
 </body>
+
+</html> --}}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ruralteca</title>
+
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+
+    @entryPointStyles('app')
+    @entryPointScripts('app')
+
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:200,400&display=swap" rel="stylesheet">
+
+    <style>
+        .work-sans {
+            font-family: 'Work Sans', sans-serif;
+        }
+
+        #menu-toggle:checked+#menu {
+            display: block;
+        }
+
+        .hover\:grow {
+            transition: all 0.3s;
+            transform: scale(1);
+        }
+
+        .hover\:grow:hover {
+            transform: scale(1.02);
+        }
+    </style>
+
+</head>
+
+<body class="bg-white text-gray-600 work-sans leading-normal text-base tracking-normal">
+
+    @!component('layouts/partials/header')
+
+    @if(title)
+        <section class="bg-white py-8">
+            <div class="container mx-auto flex items-center flex-wrap pt-4">
+                <nav id="store" class="w-full z-30 top-0 px-6 py-1">
+                    <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3">
+            
+                        <a class="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl "
+                            href="#">
+                            {{ title }}
+                        </a>
+                    </div>
+            
+                    @if(subtitle)
+                        <p class="mt-8">{{ subtitle }}</p>
+                    @endif
+                </nav>
+            </div>
+        </section>
+    @endif
+
+    @!section('content')
+
+    @!component('layouts/partials/footer')
+
+</body>
+
 </html>
