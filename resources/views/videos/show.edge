@@ -3,6 +3,8 @@
 @set('title', 'Exibindo o Vídeo')
 
 @section('content')
+  @!youtube({ key: video.youtubeKey })
+
   <fieldset>
     <div>
       <legend>Título</legend>
