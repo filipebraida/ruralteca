@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, computed } from '@ioc:Adonis/Lucid/Orm'
 
 export default class Video extends BaseModel {
   @column({ isPrimary: true })
@@ -19,4 +19,18 @@ export default class Video extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @computed()
+  public get thumbnail() {
+    return `https://img.youtube.com/vi/${this.youtubeKey}/0.jpg`
+  }
+
+  @computed()
+  public get descriptionLimited() {
+    if (this.description.length > 80) {
+      return this.description.substring(0, 80) + '...'
+    }
+
+    return this.description
+  }
 }
