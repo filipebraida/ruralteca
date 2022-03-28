@@ -2,8 +2,11 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Video from 'App/Models/Video'
 
 export default class VideosController {
-  public async index({ view }: HttpContextContract) {
-    const videos = await Video.all()
+  public async index({ request, view }: HttpContextContract) {
+    const page = request.input('page', 1)
+    const limit = 10
+
+    const videos = await Video.query().paginate(page, limit)
 
     return view.render('videos/index', { videos: videos })
   }
