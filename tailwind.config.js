@@ -1,4 +1,5 @@
 const colors = require('tailwindcss/colors')
+const forms = require('@tailwindcss/forms')
 
 module.exports = {
   mode: 'jit',
@@ -10,7 +11,7 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [forms],
   theme: {
     colors: {
       transparent: 'transparent',
