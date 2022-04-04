@@ -1,5 +1,7 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, computed } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, computed, manyToMany, ManyToMany } from '@ioc:Adonis/Lucid/Orm'
+
+import User from 'App/Models/User'
 
 export default class Video extends BaseModel {
   @column({ isPrimary: true })
@@ -13,6 +15,11 @@ export default class Video extends BaseModel {
 
   @column()
   public youtubeKey: string
+
+  @manyToMany(() => User, {
+    pivotTable: 'user_video_like',
+  })
+  public usersLiked: ManyToMany<typeof User>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

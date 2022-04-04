@@ -37,7 +37,7 @@
       </nav>
 
       @each(video in videos)
-        @!card({ id: video.id, title: video.title, description: video.descriptionLimited, thumbnail: video.thumbnail })
+        @!card({ id: video.id, title: video.title, description: video.descriptionLimited, thumbnail: video.thumbnail, liked: video.liked })
       @endeach
   </div>
 
@@ -46,8 +46,14 @@
 
 @section('script')
 <script>
-  function likeVideo(id) {
-    fetch(`/videos/${id}/like`, {
+  function likeVideo(id, action) {
+    var url = `/videos/${id}/like`
+
+    if(!action) {
+      url = `/videos/${id}/dislike`
+    }
+
+    fetch(url, {
         method: "GET",
       }).then((response) => {
         if (response.ok) {
@@ -59,10 +65,14 @@
         const heartLike = document.getElementById(`heartLiked${responseJson.id}`)
         const heartDislike = document.getElementById(`heartDisliked${responseJson.id}`)
 
-        if(responseJson.like) {
+        console.log(responseJson.like)
+
+        if(responseJson.like === 'true') {
+          console.log("entrei no like")
           heartLike.classList.remove('invisible')
           heartDislike.classList.add('invisible')
         } else {
+          console.log("entrei no dislike")
           heartDislike.classList.remove('invisible')
           heartLike.classList.add('invisible')
         }

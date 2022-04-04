@@ -3,11 +3,26 @@ import User from 'App/Models/User'
 import Video from 'App/Models/Video'
 
 export default class VideosController {
-  public async index({ request, view }: HttpContextContract) {
+  public async index({ auth, request, view }: HttpContextContract) {
     const page = request.input('page', 1)
     const limit = 10
 
-    const videos = await Video.query().paginate(page, limit)
+    const videos = await Video.query().preload('usersLiked').paginate(page, limit)
+
+    var idVideosLiked = []
+
+    for await (var video of videos) {
+      video.liked = false
+
+      for await (var user of video.usersLiked) {
+        if(user.id === auth.user.id) {
+          //idVideosLiked.push(video.id)
+          video.liked = true
+        }
+      }
+    }
+
+    console.log(videos[0].liked)
 
     return view.render('videos/index', { videos: videos })
   }
@@ -31,12 +46,23 @@ export default class VideosController {
   }
 
   public async like({ auth, params }: HttpContextContract) {
+    console.log('estou no like')
     const user = await User.find(auth.user.id)
     const video = await Video.find(params.id)
 
     user?.related('videosLiked').attach([video!.id])
 
     return { id: params.id, like: 'true' }
+  }
+
+  public async dislike({ auth, params }: HttpContextContract) {
+    console.log('estou no dislike')
+    const user = await User.find(auth.user.id)
+    const video = await Video.find(params.id)
+
+    user?.related('videosLiked').detach([video!.id])
+
+    return { id: params.id, like: 'false' }
   }
 
   public async edit({}: HttpContextContract) {}
