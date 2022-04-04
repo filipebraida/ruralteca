@@ -65,14 +65,10 @@
         const heartLike = document.getElementById(`heartLiked${responseJson.id}`)
         const heartDislike = document.getElementById(`heartDisliked${responseJson.id}`)
 
-        console.log(responseJson.like)
-
         if(responseJson.like === 'true') {
-          console.log("entrei no like")
           heartLike.classList.remove('invisible')
           heartDislike.classList.add('invisible')
         } else {
-          console.log("entrei no dislike")
           heartDislike.classList.remove('invisible')
           heartLike.classList.add('invisible')
         }

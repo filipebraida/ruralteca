@@ -47,10 +47,22 @@ export default class VideosController {
 
   public async like({ auth, params }: HttpContextContract) {
     console.log('estou no like')
-    const user = await User.find(auth.user.id)
-    const video = await Video.find(params.id)
+    const user = await User.findOrFail(auth.user.id)
+    const video = await Video.findOrFail(params.id)
 
-    user?.related('videosLiked').attach([video!.id])
+    await user?.load('videosLiked')
+
+    var userLikedVideo = false
+
+    for await (var videoLikedUser of user.videosLiked) {
+      if (videoLikedUser.id === video.id) {
+        userLikedVideo = true
+      }
+    }
+
+    if(!userLikedVideo) {
+      user?.related('videosLiked').attach([video!.id])
+    }
 
     return { id: params.id, like: 'true' }
   }
