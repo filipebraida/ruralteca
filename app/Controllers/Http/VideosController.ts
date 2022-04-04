@@ -1,4 +1,5 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import User from 'App/Models/User'
 import Video from 'App/Models/Video'
 
 export default class VideosController {
@@ -27,6 +28,15 @@ export default class VideosController {
     const video = await Video.find(params.id)
 
     return view.render('videos/show', { video: video })
+  }
+
+  public async like({ auth, params }: HttpContextContract) {
+    const user = await User.find(auth.user.id)
+    const video = await Video.find(params.id)
+
+    user?.related('videosLiked').attach([video!.id])
+
+    return { id: params.id, like: 'true' }
   }
 
   public async edit({}: HttpContextContract) {}

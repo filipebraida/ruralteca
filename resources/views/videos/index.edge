@@ -43,3 +43,39 @@
 
 </section>
 @endsection
+
+@section('script')
+<script>
+  function likeVideo(id) {
+    fetch(`/videos/${id}/like`, {
+        method: "GET",
+      }).then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Something went wrong');
+      })
+      .then((responseJson) => {
+        const heartLike = document.getElementById(`heartLiked${responseJson.id}`)
+        const heartDislike = document.getElementById(`heartDisliked${responseJson.id}`)
+
+        if(responseJson.like) {
+          heartLike.classList.remove('invisible')
+          heartDislike.classList.add('invisible')
+        } else {
+          heartDislike.classList.remove('invisible')
+          heartLike.classList.add('invisible')
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      });
+  }
+
+  document.onreadystatechange = function () {
+    if (document.readyState == "interactive") {
+
+    }
+  }
+</script>
+@endsection

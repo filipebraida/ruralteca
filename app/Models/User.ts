@@ -1,6 +1,9 @@
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
-import { column, beforeSave, BaseModel } from '@ioc:Adonis/Lucid/Orm'
+import { column, beforeSave, BaseModel, manyToMany, ManyToMany,
+ } from '@ioc:Adonis/Lucid/Orm'
+
+import Video from 'App/Models/Video'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -14,6 +17,11 @@ export default class User extends BaseModel {
 
   @column()
   public rememberMeToken?: string
+
+  @manyToMany(() => Video, {
+    pivotTable: 'user_video_like',
+  })
+  public videosLiked: ManyToMany<typeof Video>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

@@ -28,6 +28,7 @@ Route.get('/courses/:id', 'CoursesController.show')
 
 // Rotas dos Videos
 Route.get('/videos/create', 'VideosController.create').as('videos.create')
+Route.get('/videos/:id/like', 'VideosController.like').middleware('auth:web')
 Route.get('/videos/:id', 'VideosController.show')
   .where('id', /^[0-9]$/)
   .as('videos.show')
